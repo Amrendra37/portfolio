@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/ProfessionalPortfolio"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/ProfessionalPortfolio.html"
+  to = "/"
+  status = 301
