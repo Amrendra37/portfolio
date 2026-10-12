@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amrendra Kumar — Senior Data Engineer</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --panel: #111827;
+    --panel-2: #1a2332;
+    --text: #e6edf7;
+    --muted: #8b98a9;
+    --accent: #00d4ff;
+    --accent-2: #7c3aed;
+    --green: #10b981;
+    --border: #1f2a3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Animated background */
+  .bg-grid {
+    position: fixed; inset: 0; z-index: -1;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 40%, transparent 80%);
+  }
+
+  /* Header */
+  header {
+    padding: 90px 24px 60px;
+    text-align: center;
+    position: relative;
+  }
+  .avatar {
+    width: 110px; height: 110px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 42px; font-weight: 800; color: #fff;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 40px rgba(0,212,255,0.4);
+    animation: pulse 3s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 30px rgba(0,212,255,0.35); }
+    50% { box-shadow: 0 0 55px rgba(124,58,237,0.55); }
+  }
+  h1 { font-size: 2.6rem; letter-spacing: -1px; }
+  h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tagline { color: var(--muted); font-size: 1.15rem; margin-top: 8px; }
+  .contact {
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+  }
+  .contact a, .contact span {
+    background: var(--panel); border: 1px solid var(--border);
+    padding: 8px 16px; border-radius: 30px; font-size: 0.9rem;
+    color: var(--text); transition: 0.2s;
+  }
+  .contact a:hover { border-color: var(--accent); box-shadow: 0 0 18px rgba(0,212,255,0.25); }
+
+  /* Metrics bar */
+  .metrics {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 16px; max-width: 1000px; margin: 50px auto 0; padding: 0 24px;
+  }
+  .metric {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; text-align: center; transition: 0.25s;
+  }
+  .metric:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .metric .num { font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .metric .label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+  /* Sections */
+  section { max-width: 1000px; margin: 0 auto; padding: 60px 24px; }
+  .section-title {
+    font-size: 1.6rem; margin-bottom: 28px; position: relative; padding-left: 16px;
+  }
+  .section-title::before {
+    content: ''; position: absolute; left: 0; top: 6px; bottom: 6px; width: 4px;
+    background: linear-gradient(var(--accent), var(--accent-2)); border-radius: 4px;
+  }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
+  .skill-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; transition: 0.25s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-card h3 { font-size: 1rem; color: var(--accent); margin-bottom: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: var(--panel-2); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; color: var(--text);
+  }
+  .tag.hot { border-color: var(--accent-2); color: #c4b5fd; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(var(--accent), var(--accent-2));
+  }
+  .job { position: relative; margin-bottom: 40px; }
+  .job::before {
+    content: ''; position: absolute; left: -29px; top: 6px; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--bg); border: 3px solid var(--accent);
+  }
+  .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .job h3 { font-size: 1.15rem; }
+  .job .company { color: var(--accent); font-weight: 600; }
+  .job .period { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+  .job .role-sub { color: var(--muted); font-size: 0.9rem; margin: 4px 0 10px; }
+  .job ul { list-style: none; padding-left: 0; }
+  .job li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 0.93rem; color: #cbd5e1; }
+  .job li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+  .job li b { color: #fff; }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+  .project {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; transition: 0.25s; position: relative; overflow: hidden;
+  }
+  .project::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0); transform-origin: left; transition: 0.3s;
+  }
+  .project:hover::after { transform: scaleX(1); }
+  .project:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .project h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .project .meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 14px; }
+  .project ul { list-style: none; padding-left: 0; }
+  .project li { position: relative; padding-left: 18px; margin-bottom: 7px; font-size: 0.88rem; color: #cbd5e1; }
+  .project li::before { content: '→'; position: absolute; left: 0; color: var(--accent-2); }
+
+  /* Certifications */
+  .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+  .cert {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px; font-size: 0.9rem; display: flex; align-items: center; gap: 12px;
+    transition: 0.2s;
+  }
+  .cert:hover { border-color: var(--green); transform: translateX(4px); }
+  .cert .icon { font-size: 1.3rem; }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 40px 24px; color: var(--muted); font-size: 0.85rem;
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+
+  /* Fade-in on scroll */
+  .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.9rem; }
+    .metric .num { font-size: 1.5rem; }
+    section { padding: 40px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<header>
+  <div class="avatar">AK</div>
+  <h1>Amrendra <span>Kumar</span></h1>
+  <p class="tagline">Senior Data Engineer · 8+ Years · Financial Services & Telecom</p>
+  <div class="contact">
+    <span>📍 New Delhi, India</span>
+    <a href="tel:+919818745380">📞 +91 98187 45380</a>
+    <a href="mailto:Brillikumaramrendra@gmail.com">✉️ Email</a>
+    <a href="https://linkedin.com/in/amrendra-kumar-653a49127" target="_blank">💼 LinkedIn</a>
+    <a href="https://github.com/Amrendra37" target="_blank">💻 GitHub</a>
+  </div>
+</header>
+
+<!-- Metrics -->
+<div class="metrics reveal">
+  <div class="metric"><div class="num">$100M</div><div class="label">Fraud Savings (2026)</div></div>
+  <div class="metric"><div class="num">80%</div><div class="label">Faster Investigation</div></div>
+  <div class="metric"><div class="num">1M+</div><div class="label">Transactions / Day</div></div>
+  <div class="metric"><div class="num">97%</div><div class="label">Data Quality Pass</div></div>
+  <div class="metric"><div class="num">16M+</div><div class="label">Records Migrated</div></div>
+  <div class="metric"><div class="num">50K</div><div class="label">Events / Cycle</div></div>
+</div>
+
+<!-- Summary -->
+<section class="reveal">
+  <h2 class="section-title">Professional Summary</h2>
+  <p style="color:#cbd5e1; font-size:1.02rem;">
+    Data Engineer with hands-on <b>Neo4j, PySpark, Databricks, and RAG/LLM</b> experience building fraud-detection
+    data pipelines for Synchrony Financial, a Fortune 500 US financial institution. Currently designing
+    graph-based fraud analytics and <b>retrieval-augmented generation pipelines with vector databases and MCP
+    connectivity</b>, processing high-volume transactional data across a 14-person cross-functional team.
+    Deep expertise across the full Azure/AWS data stack (ADF, Databricks, Kafka, EKS) with a track record of
+    reducing pipeline runtime and improving data quality on production-grade, regulated data platforms.
+  </p>
+</section>
+
+<!-- Skills -->
+<section class="reveal">
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>🤖 AI / LLM Engineering</h3>
+      <div class="tags">
+        <span class="tag hot">RAG Pipelines</span>
+        <span class="tag hot">Embeddings</span>
+        <span class="tag hot">Vector DBs</span>
+        <span class="tag hot">MCP Connectivity</span>
+        <span class="tag hot">LangChain</span>
+        <span class="tag hot">Semantic Search</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>⚙️ Data Engineering</h3>
+      <div class="tags">
+        <span class="tag">ETL/ELT</span>
+        <span class="tag">Airflow</span>
+        <span class="tag">Databricks</span>
+        <span class="tag">Delta Lake</span>
+        <span class="tag">Data Warehousing</span>
+        <span class="tag">Data Lake (S3, ADLS)</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🕸️ Graph & Streaming</h3>
+      <div class="tags">
+        <span class="tag">Neo4j (Cypher)</span>
+        <span class="tag">Kafka</span>
+        <span class="tag">Zookeeper</span>
+        <span class="tag">Spark</span>
+        <span class="tag">PySpark</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>☁️ Cloud & DevOps</h3>
+      <div class="tags">
+        <span class="tag">AWS (EC2, Lambda, S3, EKS)</span>
+        <span class="tag">Azure (ADF, Databricks, DevOps, Functions)</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>💻 Languages</h3>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Bash</span>
+        <span class="tag">Java (basic)</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🗄️ Databases</h3>
+      <div class="tags">
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Neo4j</span>
+        <span class="tag">Hive</span>
+        <span class="tag">Oracle DB</span>
+        <span class="tag">pgvector</span>
+        <span class="tag">Pinecone</span>
+        <span class="tag">ChromaDB</span>
+        <span class="tag">FAISS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🧪 Testing & Tools</h3>
+      <div class="tags">
+        <span class="tag">Pytest</span>
+        <span class="tag">Unittest</span>
+        <span class="tag">pytest-cov</span>
+        <span class="tag">JIRA</span>
+        <span class="tag">Git</span>
+        <span class="tag">Confluence</span>
+        <span class="tag">Postman</span>
+        <span class="tag">Kibana</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3>🏢 Domain</h3>
+      <div class="tags">
+        <span class="tag">Financial Services (Fraud)</span>
+        <span class="tag">Telecommunications</span>
+        <span class="tag">Enterprise Services</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="reveal">
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+
+    <div class="job">
+      <div class="job-head">
+        <h3><span class="company">EXL Services</span> — Lead Assistant Manager</h3>
+        <span class="period">Sep 2025 – Present</span>
+      </div>
+      <div class="role-sub">Synchrony Financial, USA · Enterprise Fraud Detection Platform · Team of 14</div>
+      <ul>
+        <li>Built graph-based fraud detection pipelines for a Fortune 500 financial institution, reducing fraud-ring identification time and <b>saving ~$100M (2026)</b>.</li>
+        <li><b>Reduced fraud investigation turnaround by ~80%</b> by designing Neo4j graph-based entity-resolution models surfacing hidden fraud rings and mule account networks.</li>
+        <li>Increased ETL throughput to <b>1M+ transactions/day</b> by building scalable PySpark and Azure Data Factory pipelines across 14 banking source systems.</li>
+        <li>Achieved <b>97% data quality pass rate</b> via metadata-driven data quality frameworks aligned with enterprise governance and lineage standards.</li>
+        <li>Cut pipeline execution time by <b>60–80%</b> by optimizing SQL queries and distributed Spark jobs, deployed via Azure DevOps CI/CD.</li>
+        <li>Architected a <b>RAG-based fraud investigation assistant</b> by generating embeddings from 10M+ historical fraud cases stored in a vector DB (pgvector/ChromaDB) for semantic retrieval.</li>
+        <li>Integrated <b>MCP (Model Context Protocol) connectors</b> exposing fraud graph APIs and vector search endpoints to LLM agents, reducing investigation query time ~40%.</li>
+        <li>Built embedding generation pipelines (PySpark + Sentence-Transformers) continuously indexing new fraud entities with <b>&lt;5 min latency</b>.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3><span class="company">Tech Mahindra</span> — Senior Software Engineer</h3>
+        <span class="period">Aug 2023 – Sep 2025</span>
+      </div>
+      <div class="role-sub">Telefonica Germany · Blue Planet Inventory System (BP MDSO) · Team of 10</div>
+      <ul>
+        <li><b>Improved telecom service provisioning speed by ~60%</b> by developing Python-based RESTful microservices (Django, Flask) for Blue Planet MDSO.</li>
+        <li>Increased data processing efficiency by <b>30%</b> via PySpark-based ETL/ELT workflows integrating 3rd-party apps with Blueplanet Inventory.</li>
+        <li>Reduced pipeline failures during backfills by <b>85%</b> by designing Airflow DAGs with governed scheduling and dependency management.</li>
+        <li>Achieved <b>zero-downtime migration of 16M+ records</b> from OracleDB to Neo4j using optimized Python scripts.</li>
+        <li>Raised release reliability to <b>~90%+ code coverage</b> via Pytest unit, integration, and API test suites with parameterized mocking.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3><span class="company">Brillo Technologies</span> — Senior Software Development Engineer</h3>
+        <span class="period">Apr 2022 – Jul 2023</span>
+      </div>
+      <div class="role-sub">Ciena · BP MDSO · Team of 5</div>
+      <ul>
+        <li>Cut manual provisioning steps by <b>~60%</b> by building Python microservices for the BP MDSO platform.</li>
+        <li>Sustained high-volume, low-latency event processing at <b>~50,000 events/cycle</b> via Kafka streaming architecture.</li>
+        <li>Improved analytics readiness by processing <b>~1TB+ of data</b> through PySpark ETL pipelines integrated with ADLS Gen2 and Databricks.</li>
+        <li>Reduced deployment errors by <b>~83%</b> by managing containerized deployments with Docker on Azure Kubernetes Service.</li>
+        <li>Reduced production defect rate by <b>~70%</b> by tuning Python microservices and expanding automated Pytest coverage.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3><span class="company">Orange Business Services</span> — System Software Engineer</h3>
+        <span class="period">Dec 2020 – Mar 2022</span>
+      </div>
+      <div class="role-sub">Developer · Team of 5</div>
+      <ul>
+        <li>Reduced manual network operations workload by <b>~70%</b> by designing a Python web portal automating network operations for OBS Cairo.</li>
+        <li>Improved device management efficiency by <b>~60%</b> via automation scripts against Cisco REST APIs (Meraki, vManage).</li>
+        <li>Expanded automated test coverage to <b>~80%</b> using Python test suites, Pandas, and NumPy.</li>
+        <li>Cut incident response time by <b>~30%</b> using Kibana for real-time log monitoring and microservice troubleshooting.</li>
+        <li>Automated <b>~70% of recurring operational jobs</b> via UNIX scripting/Cron, later evolved into event-driven Azure Functions + ADF pipelines.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <h3><span class="company">Ericsson Global India</span> — Automation Engineer</h3>
+        <span class="period">Oct 2018 – Nov 2020</span>
+      </div>
+      <div class="role-sub">Liberty Global · Team of 8</div>
+      <ul>
+        <li>Improved data warehouse reporting accuracy by <b>~75%</b> by loading/transforming source GL data into EDW using mLoad/fload and FSLDM-aligned logic.</li>
+        <li>Reduced production change-request risk by <b>~35%</b> via impact assessments across schedule, dependency, and code changes.</li>
+        <li>Cut UAT environment setup lead time by <b>~50%</b> by preparing and supporting UAT data environments with unit and SIT cases.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="reveal">
+  <h2 class="section-title">Key Projects</h2>
+  <div class="projects">
+    <div class="project">
+      <h3>🛡️ Enterprise Fraud Detection Platform</h3>
+      <div class="meta">Synchrony Financial, USA · Python, PySpark, Neo4j, Azure, RAG, Vector DB</div>
+      <ul>
+        <li>Graph-based fraud detection pipelines saving ~$100M in 2026.</li>
+        <li>Neo4j entity-resolution models surfacing hidden fraud rings.</li>
+        <li>RAG assistant over 10M+ historical fraud cases via pgvector/ChromaDB.</li>
+        <li>MCP connectors exposing graph + vector APIs to LLM agents.</li>
+        <li>1M+ transactions/day · 97% data quality pass · 60–80% runtime cut.</li>
+      </ul>
+    </div>
+    <div class="project">
+      <h3>📡 Blue Planet Inventory System (BP MDSO)</h3>
+      <div class="meta">Telefonica Germany · Python, Neo4j, Databricks, Airflow, S3</div>
+      <ul>
+        <li>Automated telecom service orchestration for CSPs.</li>
+        <li>~60% faster provisioning · 30% better data efficiency.</li>
+        <li>85% fewer backfill failures via governed Airflow DAGs.</li>
+        <li>Zero-downtime migration of 16M+ records Oracle → Neo4j.</li>
+      </ul>
+    </div>
+    <div class="project">
+      <h3>🚀 Ciena BP MDSO Platform</h3>
+      <div class="meta">Python, PySpark, Airflow, Kafka, Docker, AWS</div>
+      <ul>
+        <li>~60% fewer manual provisioning steps.</li>
+        <li>50K events/cycle Kafka streaming at low latency.</li>
+        <li>1TB+ data processed via PySpark + ADLS Gen2 + Databricks.</li>
+        <li>83% fewer deployment errors on AKS.</li>
+      </ul>
+    </div>
+    <div class="project">
+      <h3>🌐 Orange Business Services Portal</h3>
+      <div class="meta">Python, Django, Flask, Cisco REST APIs, Pandas, MySQL</div>
+      <ul>
+        <li>70% manual workload reduced via network ops portal.</li>
+        <li>60% better device management with Cisco Meraki/vManage automation.</li>
+        <li>80% test coverage · 30% faster incident response via Kibana.</li>
+      </ul>
+    </div>
+    <div class="project">
+      <h3>📊 Ericsson — Liberty Global EDW</h3>
+      <div class="meta">Python, mLoad/fload, FSLDM, Docker, Linux</div>
+      <ul>
+        <li>75% better EDW reporting accuracy.</li>
+        <li>35% lower change-request risk via impact assessments.</li>
+        <li>50% faster UAT environment setup.</li>
+      </ul>
+    </div>
+    <div class="project">
+      <h3>🤖 AI-Powered Options Trading Platform <em style="color:#10b981;font-size:0.8rem;">(In Progress)</em></h3>
+      <div class="meta">Python, FastAPI, PostgreSQL, Docker, RAG, Vector DB, MCP, AI Agents</div>
+      <ul>
+        <li>Event-driven architecture with Market Data, Event Bus, Strategy, Risk, Execution modules.</li>
+        <li>RAG over historical news/filings using embeddings + pgvector.</li>
+        <li>MCP server exposing tools to AI agents for augmented trade reasoning.</li>
+        <li>SOLID principles, dependency injection, automated unit + integration tests.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="reveal">
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs">
+    <div class="cert"><span class="icon">⚡</span> Master Apache Spark Programming in Python — Databricks Community</div>
+    <div class="cert"><span class="icon">🐘</span> Master the Hadoop Ecosystem (HDFS, MapReduce, YARN, Pig, Hive, Kafka, HBase, Spark, Knox, Ranger, Ambari, Zookeeper)</div>
+    <div class="cert"><span class="icon">🗃️</span> Advanced SQL Retrieval Queries — SQLite Studio</div>
+    <div class="cert"><span class="icon">☕</span> Java Programming</div>
+    <div class="cert"><span class="icon">🤖</span> Generative AI for Data Engineering & Data Professionals (RAG, Embeddings, Vector DB, MCP)</div>
+    <div class="cert"><span class="icon">🕸️</span> Neo4j: NoSQL Graph Database with Cypher</div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="reveal">
+  <h2 class="section-title">Education</h2>
+  <div class="job">
+    <div class="job-head">
+      <h3>Bachelor of Technology — Electronics & Communication Engineering</h3>
+      <span class="period">2014 – 2018</span>
+    </div>
+    <div class="role-sub">IMS Engineering College, Ghaziabad, Uttar Pradesh</div>
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> Amrendra Kumar · Built with ❤️ and a lot of PySpark</p>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links (if you add a nav later)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
